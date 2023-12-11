@@ -1,0 +1,51 @@
+#Pendingbutton {
+  width: 120px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 25px;
+  background: #f6a000;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 183.333% */
+  letter-spacing: -0.408px;
+  margin: 0 auto;
+}
+
+#Subbmitedgbutton {
+  width: 120px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 25px;
+  background: #007200;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 183.333% */
+  letter-spacing: -0.408px;
+  margin: 0 auto;
+
+}
+#Rejectbutton {
+  width: 120px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 25px;
+  background: #F12222;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 183.333% */
+  letter-spacing: -0.408px;
+  margin: 0 auto;
+
+}

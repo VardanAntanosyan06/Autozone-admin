@@ -1,0 +1,17 @@
+
+.chlid {
+    border: 0.1px solid ;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight:700;
+    cursor: pointer;
+    text-decoration: none;
+    color:black;
+}
+
+.active{
+    border-right: 5px solid #ffa500 ;
+}
