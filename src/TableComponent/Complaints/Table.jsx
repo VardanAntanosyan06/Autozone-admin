@@ -17,35 +17,36 @@ const Table = () => {
   const fetchData = (filter = "", filterDate = null) => {
     if(filterDate) filterDate = filterDate.toISOString().split("T")[0]
     axios
-      .post("admin/getAllComplaintsDatas", { filter, date:filterDate })
-      .then((response) => {
-        setData(response.data.Complaint);
-      })
-      .catch((e) => setTimeout(() => {
-        navigate("/login")
+    .post("admin/getAllComplaintsData", { filter, date:filterDate })
+    .then((response) => {
+      setData(response.data.Complaint)
+      {console.log(displayedItems[0].receiver,"+++++++++++")}
+    })
+    .catch((e) => setTimeout(() => {
+      navigate("/login")
         localStorage.removeItem("token")
       }, 1500));
-  };
-
-  const handleFilterButtonClick = (filter, filterDate) => {
-    fetchData(filter, filterDate);
-  };
-
-  let pageCount = 0;
-  let displayedItems = []
-  if(data){
-    pageCount = Math.ceil(data.length / itemsPerPage);
-    displayedItems  = data.slice(
-      currentPage * itemsPerPage,
-      (currentPage + 1) * itemsPerPage
-      );
-    }
-  let height = window.innerHeight - 45;
-
+    };
+    
+    const handleFilterButtonClick = (filter, filterDate) => {
+      fetchData(filter, filterDate);
+    };
+    
+    let pageCount = 0;
+    let displayedItems = []
+    if(data){
+      pageCount = Math.ceil(data.length / itemsPerPage);
+      displayedItems  = data.slice(
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage
+        );
+      }
+    let height = window.innerHeight - 45;
+    
   return data ? (
     <div
-      style={{
-        display: "flex",
+    style={{
+      display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         height,
@@ -64,8 +65,9 @@ const Table = () => {
         <tbody>
           {displayedItems.map((e, i) => (
             <tr key={i}>
-              <td>{e.sender.phoneNumber}</td>
-              <td>{e.receiver.phoneNumber}</td>
+              {console.log(e.sender)}
+              {/* {!e.sender}?<td>{e.sender.phoneNumber}</td>:<td>Ջնջված Օգտատեր </td> */}
+              {/* {!e.receiver}?<td>Ջնջված Օգտատեր </td>:<td>{e.receiver.phoneNumber}</td> */}
               <td>{e.complaint}</td>
               <td>{e.createdAt.replace("T", " ").replace("Z", "")}</td>
             </tr>

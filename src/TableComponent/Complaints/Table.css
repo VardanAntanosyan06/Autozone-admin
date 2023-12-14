@@ -2,6 +2,7 @@ table{
   width: 1500px;
   height: 100px;
   overflow: scroll;
+  
 }
 tr{
   text-align: center;

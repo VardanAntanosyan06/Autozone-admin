@@ -17,8 +17,9 @@ const App = () => {
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-around",
-                paddingTop: 10 + "px",
+                justifyContent: "space-evenly",
+                // paddingTop: 10 + "px",
+
               }}
             >
               <Menu />

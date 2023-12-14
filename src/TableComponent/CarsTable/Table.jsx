@@ -49,7 +49,7 @@ const Table = () => {
         flexDirection: "column",
         justifyContent: "space-between",
         height,
-      }}
+      }}  
     >
       <Filter onFilterButtonClick={handleFilterButtonClick} />
       <table border="1px">
