@@ -3,35 +3,35 @@ import axios from "../../axios/axios";
 import ReactPaginate from "react-paginate";
 import "../Table.css"; // Import your existing CSS file
 import Filter from "../../FilterComponent/Filter";
-import visa from "./visa.png";
-import Rejectbutton from '../../UI/Rejectbutton'
-import Subbmitedgbutton from "../../UI/SubmitedPutton"
-import PendingButton from "../../UI/PendingButton"
 import LoadingAnimation from "../../Loading /Loading";
 import { useNavigate } from "react-router-dom";
+import idram from "./photo_2023-12-11_15-46-30.jpg"
+import tellcel from "./photo_2023-12-11_15-46-49.jpg"
+import AciveButton from "../../UI/AciveButton"; 
+import TimeoutButton from "../../UI/TimeoutButton";
 
-const PaymentTable = () => {
-  const navigate =  useNavigate()
+const SubscribtionPayment = () => {
   const [data, setData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 14;
-
+  const itemsPerPage = 12;
+  const navigate = useNavigate();
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = (filter = "", filterDate = null) => {
+    if(filterDate) filterDate = filterDate.toISOString().split("T")[0]
     axios
-      .get("admin/getAllPaymentData", { filter, filterDate })
+      .post("admin/getAllSubscribtionData", { filter, date:filterDate })
       .then((response) => {
-        setData(response.data.results);
-        console.log(response.data);
+        setData(response.data.PaymentInfo);
       })
       .catch((e) => setTimeout(() => {
         navigate("/login")
         localStorage.removeItem("token")
-      }, 1500));;
+      }, 1500));
   };
+
   const handleFilterButtonClick = (filter, filterDate) => {
     fetchData(filter, filterDate);
   };
@@ -53,9 +53,10 @@ const PaymentTable = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        marginTop:30+"px"
+        height,
       }}
     >
+      <Filter onFilterButtonClick={handleFilterButtonClick} />
       <table border="1px">
         <thead>
           <tr>
@@ -69,45 +70,39 @@ const PaymentTable = () => {
         <tbody>
           {displayedItems.map((e) => (
             <tr key={e.id}>
-              <td>{e.id}</td>
+              <td>{e.SubscribtionPayments[0].id}</td>
               <td>
-                {e.created_at
+                {e.SubscribtionPayments[0].createdAt
                   .replace("T", " ")
                   .replace("Z", "")
                   .replaceAll("-", "/")}
               </td>
-              <td>{e.phone}</td>
-              <td style={{ marginLeft: 30 + "px" }}>
-                {e.status === 1 && <PendingButton />}
-                {e.status === 2 && <Subbmitedgbutton />}
-                {e.status === 3 && <Rejectbutton />}
-              </td>
-              <td>
-                <img src={visa} alt="Visa" />
-              </td>
+              <td>+{e.phoneNumber}</td>
+              <td>{new Date(e.SubscribtionPayments[0].endDate)>new Date()?<AciveButton/>:<TimeoutButton/>}</td>
+              <td>{e.SubscribtionPayments[0].paymentWay=="Tellcel"?<img src={tellcel} style={{width:65+"px",height:35+"px"}}/>:<img src={idram} style={{width:65+"px",height:25+"px"}}/>}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       <div style={{width:90+"%",display:"flex",justifyContent:"space-between",alignItems:"center",paddingLeft:50+"px"}}>
-        <b>{data.length} Արդյունք</b>
-      <ReactPaginate
-        previousLabel={"<"}
-        nextLabel={">"}
-        breakLabel={"..."}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={(selectedPage) => setCurrentPage(selectedPage.selected)}
-        containerClassName={"pagination"}
-        activeClassName={"active"}
-      />
-        </div>     
+      <b>{data.length} Արդյունք</b>
+    <ReactPaginate
+      previousLabel={"<"}
+      nextLabel={">"}
+      breakLabel={"..."}
+      pageCount={pageCount}
+      marginPagesDisplayed={2}
+      pageRangeDisplayed={5}
+      onPageChange={(selectedPage) => setCurrentPage(selectedPage.selected)}
+      containerClassName={"pagination"}
+      activeClassName={"active"}
+    />
+      </div>     
     </div>
   ) : (
     <LoadingAnimation />
   );
 };
 
-export default PaymentTable;
+export default SubscribtionPayment;

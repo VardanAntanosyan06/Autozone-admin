@@ -33,7 +33,6 @@ const Filter = ({ onFilterButtonClick }) => {
           onChange={onChangeValue}
           value={value}
         />
-        <h1>{date.toISOString()}</h1>
         <img src={image} onClick={() => setOpen(!open)} />
         <button id="button" onClick={handleButtonClick}>
           Հաստատել

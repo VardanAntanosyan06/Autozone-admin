@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../axios/axios";
 import ReactPaginate from "react-paginate";
-import "./Table.css"; // Import your existing CSS file
+import "../Table.css"; // Import your existing CSS file
 import Filter from "../../FilterComponent/Filter";
 import LoadingAnimation from "../../Loading /Loading";
 import { useNavigate } from "react-router-dom";
@@ -65,6 +65,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
+          {console.log(displayedItems)}
           {displayedItems.map((e,i) => (
             <tr key={i}>
               <td>{e.carNumber}</td>
@@ -72,16 +73,18 @@ const Table = () => {
               <td>{e.carMark}</td>
               <td>{e.vehicleTypeHy}</td>
               <td>{e.carTechNumber}</td>
-              <td>{e.inspection.split("T")[0].replaceAll("-", "/")}</td>
-              <td>{e.insuranceEndDate.split("T")[0].replaceAll("-", "/")}</td>
+              <td>{e.inspection?e.inspection.split("T")[0].replaceAll("-", "/"):""}</td>
+              <td>{e.insuranceEndDate?e.insuranceEndDate.split("T")[0].replaceAll("-", "/"):""}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
+       <div style={{width:90+"%",display:"flex",justifyContent:"space-between",alignItems:"center",paddingLeft:50+"px"}}>
+        <b>{data.length} Արդյունք</b>
       <ReactPaginate
-        previousLabel={"Նախորդը"}
-        nextLabel={"Հաջորդը"}
+        previousLabel={"<"}
+        nextLabel={">"}
         breakLabel={"..."}
         pageCount={pageCount}
         marginPagesDisplayed={2}
@@ -90,6 +93,7 @@ const Table = () => {
         containerClassName={"pagination"}
         activeClassName={"active"}
       />
+        </div>     
     </div>
   ) : (
     <LoadingAnimation />

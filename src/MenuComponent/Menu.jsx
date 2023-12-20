@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const Menu = () => {
   const navigate = useNavigate();
   const navLinks = [
-    // { to: "/", text: "Ծառայություններ" },
+    { to: "/SubscribtionPayment", text: "Բաժանորդներ" },
     { to: "/payment", text: "Վճարումներ" },
     { to: "/complaints", text: "Բողոքներ" },
     { to: "/users", text: "Օգտատերեր" },
@@ -33,7 +33,7 @@ const Menu = () => {
           key={link.to}
           to={link.to}
           className={({ isActive }) =>
-          isActive ? ['active', 'chlid'].join(" ") : 'chlid'
+          isActive ? ['activeMenu', 'chlid'].join(" ") : 'chlid'
         } 
         id={'chlid'}
       >
@@ -46,7 +46,7 @@ const Menu = () => {
           key={link.to}
           to={link.to}
           className={({ isActive }) =>
-            isActive ? ['active', 'chlid'].join(" ") : 'chlid'
+            isActive ? ['activeMenu', 'chlid'].join(" ") : 'chlid'
           }
           >
           {link.text}

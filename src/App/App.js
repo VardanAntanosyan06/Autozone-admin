@@ -5,6 +5,7 @@ import ComplaintsTable from "../TableComponent/Complaints/Table"
 import UserTable from "../TableComponent/UserTable/Table"
 import CarsTable from "../TableComponent/CarsTable/Table"
 import PaymentTable from "../TableComponent/PaymentTable/Table";
+import SubscribtionPayment from "../TableComponent/SubscribtionPaymentTable/Table";
 import Menu from '../MenuComponent/Menu';
 
 const App = () => {
@@ -75,6 +76,23 @@ const App = () => {
             >
               <Menu />
               <PaymentTable />
+            </div>
+          );
+        }}
+      />
+        <Route
+        path="/SubscribtionPayment"
+        Component={() => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                paddingTop: 10 + "px",
+              }}
+            >
+              <Menu />
+              <SubscribtionPayment />
             </div>
           );
         }}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../axios/axios";
 import ReactPaginate from "react-paginate";
-import "./Table.css"; // Import your existing CSS file
+import "../Table.css"; // Import your existing CSS file
 import Filter from "../../FilterComponent/Filter";
 import LoadingAnimation from "../../Loading /Loading";
 import { useNavigate } from "react-router-dom";
@@ -82,10 +82,11 @@ const Table = () => {
           ))}
         </tbody>
       </table>
-
+      <div style={{width:90+"%",display:"flex",justifyContent:"space-between",alignItems:"center",paddingLeft:50+"px"}}>
+        <b>{data.length} Արդյունք</b>
       <ReactPaginate
-        previousLabel={"Նախորդը"}
-        nextLabel={"Հաջորդը"}
+        previousLabel={"<"}
+        nextLabel={">"}
         breakLabel={"..."}
         pageCount={pageCount}
         marginPagesDisplayed={2}
@@ -94,6 +95,7 @@ const Table = () => {
         containerClassName={"pagination"}
         activeClassName={"active"}
       />
+        </div>     
     </div>
   ) : (
     <LoadingAnimation />

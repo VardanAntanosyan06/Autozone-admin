@@ -2,32 +2,41 @@ table{
   width: 1500px;
   height: 100px;
   overflow: scroll;
-  
 }
 tr{
   text-align: center;
   font-size: 18px;
-  border: #f8f8f8;
+  border: #eee;
+
 }
 td,th{
-  height: 50px;
+ height: 50px;
  font-family: Georgia, serif;
 }
-
+table, th, td {
+  border: 1px solid #eee;
+  border-collapse: collapse;
+}
 .pagination {
+  max-width: 45%;
+  height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
   list-style: none;
   padding: 0;
   margin-top: 20px;
+  background: #F3F2F7;
+  border-radius: 20px;
 }
 
 .pagination a {
+  /* width: 500px; */
+  /* height: 100px; */
   text-decoration: none;
-  color: #333;
+  /* color: #333; */
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  /* border: 1px solid #ccc; */
   margin: 0 5px;
   cursor: pointer;
 }
@@ -37,6 +46,11 @@ td,th{
 }
 
 .pagination .active>a {
-  background: #ffa500;
+  background:#252C38;
   color: #fff; 
+  border-radius: 43%;
+}
+table thead tr:first-child {
+  font-size: 16px;
+  background: #f2f2f2;
 }
